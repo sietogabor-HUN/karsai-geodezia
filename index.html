@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KG Geodézia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Mobil menü overlay -->
+<div id="mobile-menu">
+    <ul class="mobile-links">
+        <li><a href="#" onclick="closeMenu()">Nyitólap</a></li>
+        <li><a href="#" onclick="closeMenu()">Szolgáltatások</a></li>
+        <li><a href="#" onclick="closeMenu()">Kapcsolat</a></li>
+    </ul>
+    <div class="mobile-menu-line"></div>
+</div>
+
+<section id="hero">
+    <img src="hero-bg.jpg" alt="Erdei út" class="hero-bg">
+    <div class="hero-overlay"></div>
+
+    <!-- Navigáció -->
+    <nav id="site-nav">
+        <img src="KG-logo-light.png" alt="KG Geodézia" class="logo-img">
+        <ul class="nav-links">
+            <li><a href="#">Nyitólap</a></li>
+            <li><a href="#services">Szolgáltatások</a></li>
+            <li><a href="#contact">Kapcsolat</a></li>
+        </ul>
+        <button id="hamburger" aria-label="Menü megnyitása">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Tartalom -->
+    <div class="hero-content">
+
+        <!-- Felül / bal: drón -->
+        <div class="hero-left">
+            <div class="drone-enter">
+                <div class="drone-hover">
+                    <img src="dron.png" alt="Geodéziai drón" class="drone-img">
+                </div>
+            </div>
+        </div>
+
+        <!-- Alul / jobb: szöveg -->
+        <div class="hero-right">
+            <h1 class="hero-title">PRECÍZIÓS<br>FELMÉRÉS</h1>
+            <p class="hero-subtitle">Adatok, amelyekre építhet</p>
+            <p class="hero-desc">LiDAR technológiával, fotogrammetriával és drónos inspekciókkal nyújtunk megbízható geodéziai adatokat mezőgazdasági, ingatlan- és energetikai projektekhez</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Köszöntő sáv -->
+<section id="welcome">
+    <div class="welcome-inner">
+        <h2 class="welcome-title">Üdvözöljük a Karsai Geodézia Kft. honlapján!</h2>
+        <div class="welcome-accent"></div>
+        <p class="welcome-subtitle">Pontosság, megbízhatóság, szakértelem a geodézia szolgálatában</p>
+        <div class="welcome-cols">
+            <div class="welcome-col">
+                <p>Cégünk teljes körű geodéziai szolgáltatásokat nyújt magánszemélyek, vállalkozások és önkormányzatok számára. Legyen szó tervezési alaptérkép készítéséről, kitűzési feladatokról, területrendezésről vagy bármilyen földmérési munkáról, tapasztalt szakembereink korszerű eszközparkkal, naprakész szaktudással és kiemelt precizitással állnak ügyfeleink rendelkezésére.</p>
+            </div>
+            <div class="welcome-col">
+                <p>Több éves szakmai tapasztalatunkkal arra törekszünk, hogy minden projekt már az első pillanattól biztos és pontos alapokra épülhessen. Hiszünk a megbízható, átlátható együttműködésben, és abban, hogy a gondosan előkészített geodéziai munka a sikeres beruházások egyik legfontosabb alappillére.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Szolgáltatások szekció -->
+<section id="services">
+
+    <!-- LiDAR parallax hero -->
+    <div class="srv-lidar-hero">
+        <div class="srv-inner">
+            <span class="srv-label">Szolgáltatásaink</span>
+            <h2 class="srv-title">Precíziós adatok,<br>minden projekthez</h2>
+            <span class="lidar-badge">
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="8" cy="8" r="2" fill="currentColor"/>
+                    <path d="M3.5 8 A4.5 4.5 0 0 1 12.5 8" stroke-linecap="round"/>
+                    <path d="M1 8 A7 7 0 0 1 15 8" stroke-linecap="round"/>
+                </svg>
+                Kiemelt technológia
+            </span>
+            <h3 class="lidar-hero-title">3D LiDAR Szkennelés<br>& Fotogrammetria</h3>
+            <div class="lidar-accent"></div>
+            <p class="lidar-hero-desc">Drónos és statikus pontfelhő-felvételezéssel, fotogrammetriával korszerű, mérhető és feldolgozható téradatokat állítunk elő — terepi helyszíntől a komplex infrastruktúráig.</p>
+        </div>
+    </div>
+
+    <!-- 10 LiDAR szolgáltatás -->
+    <div class="srv-lidar-items">
+        <div class="srv-inner">
+            <div class="lidar-items-grid">
+
+                <div class="lidar-item">
+                    <span class="lidar-item-icon"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,17 5,8 9,12 13,5 19,17"/><line x1="1" y1="17" x2="19" y2="17"/></svg></span>
+                    <div><div class="lidar-item-title">Terepmodellek előállítása</div><div class="lidar-item-desc">Pontfelhőből generált digitális felszín- és terepmodellek tervezési, vízgazdálkodási és napelemes projektekhez.</div></div>
+                </div>
+
+                <div class="lidar-item">
+                    <span class="lidar-item-icon"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 L18 6.5 L18 13.5 L10 18 L2 13.5 L2 6.5 Z"/><line x1="10" y1="2" x2="10" y2="18"/><line x1="2" y1="6.5" x2="18" y2="6.5"/></svg></span>
+                    <div><div class="lidar-item-title">Térfogatszámítások</div><div class="lidar-item-desc">Kitermelési gödrök, depóniák és töltések pontos mennyiségi kimutatása ismételt drónos felvételezéssel.</div></div>
+                </div>
+
+                <div class="lidar-item">
+                    <span class="lidar-item-icon"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="3" y1="4" x2="3" y2="16"/><line x1="17" y1="4" x2="17" y2="16"/><path d="M3 10 C7 5, 13 15, 17 10"/></svg></span>
+                    <div><div class="lidar-item-title">Légvezetékek belógásának vizsgálata</div><div class="lidar-item-desc">Feszültség alatti hálózatok biztonsági zónájának és szabad magassági engedélyének mérése.</div></div>
+                </div>
+
+                <div class="lidar-item">
+                    <span class="lidar-item-icon"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18 V8 L10 3 L18 8 V18 H2Z"/><polyline points="7,18 7,12 13,12 13,18"/></svg></span>
+                    <div><div class="lidar-item-title">BIM modellek alapjainak szkennelése</div><div class="lidar-item-desc">Épületek és infrastruktúra szkennelése az építési információs modellezéshez szükséges adatokkal.</div></div>
+                </div>
+
+                <div class="lidar-item">
+                    <span class="lidar-item-icon"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="2" y="2" width="16" height="16" rx="1"/><line x1="2" y1="10" x2="18" y2="10"/><line x1="10" y1="10" x2="10" y2="18"/></svg></span>
+                    <div><div class="lidar-item-title">Beltéri térszkennelés</div><div class="lidar-item-desc">Helyiségek, folyosók és műszaki terek precíz digitális rögzítése felújítási és dokumentációs célokra.</div></div>
+                </div>
+
+                <div class="lidar-item">
+                    <span class="lidar-item-icon"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="10,2 18,6.5 10,11 2,6.5"/><polyline points="2,13 10,17.5 18,13"/></svg></span>
+                    <div><div class="lidar-item-title">Digitális iker létrehozása</div><div class="lidar-item-desc">Infrastruktúra vagy terepelem virtuális adatmodellje, amely valós állapotát tükrözi folyamatos monitorozáshoz.</div></div>
+                </div>
+
+                <div class="lidar-item">
+                    <span class="lidar-item-icon"><svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor"><circle cx="4" cy="10" r="1.3"/><circle cx="7" cy="6" r="1.3"/><circle cx="10" cy="13" r="1.3"/><circle cx="13" cy="4" r="1.3"/><circle cx="16" cy="10" r="1.3"/><circle cx="6" cy="15" r="1.3"/><circle cx="15" cy="15" r="1.3"/><circle cx="11" cy="8" r="1.3"/></svg></span>
+                    <div><div class="lidar-item-title">Pontfelhők szolgáltatása</div><div class="lidar-item-desc">Nyers és feldolgozott pontfelhő-adatok átadása LAS, LAZ, E57 vagy más szabványos formátumban.</div></div>
+                </div>
+
+                <div class="lidar-item">
+                    <span class="lidar-item-icon"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 18 V9 C10 4 3 2 3 2 C3 7 10 9 10 9"/><path d="M10 9 C10 4 17 2 17 2 C17 7 10 9 10 9"/></svg></span>
+                    <div><div class="lidar-item-title">Kertek, udvarok digitalizálása</div><div class="lidar-item-desc">Kültéri terek részletes 3D digitalizálása kerttervezési és tájrendezési projektek számára.</div></div>
+                </div>
+
+                <div class="lidar-item">
+                    <span class="lidar-item-icon"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="2" y="12" width="16" height="6" rx="1"/><line x1="6" y1="12" x2="6" y2="18"/><line x1="10" y1="12" x2="10" y2="18"/><line x1="14" y1="12" x2="14" y2="18"/><circle cx="10" cy="6" r="2.5"/><line x1="10" y1="1" x2="10" y2="3"/><line x1="15.5" y1="3" x2="14" y2="4.5"/><line x1="4.5" y1="3" x2="6" y2="4.5"/></svg></span>
+                    <div><div class="lidar-item-title">Napelemes tetőfelületek felmérése</div><div class="lidar-item-desc">Tetőgeometria és dőlésszög-analízis napelemes rendszer optimális elhelyezéséhez és beépíthetőségi vizsgálathoz.</div></div>
+                </div>
+
+                <div class="lidar-item">
+                    <span class="lidar-item-icon"><svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></span>
+                    <div><div class="lidar-item-title">Fotogrammetriai ortomozaikok</div><div class="lidar-item-desc">Légifelvételekből készített georeferált, nagy felbontású ortofotó-mozaikok terepi és tervezési alkalmazásokhoz.</div></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Klasszikus geodéziai szolgáltatások -->
+    <div class="srv-classic">
+        <div class="srv-inner">
+            <div class="classic-header">
+                <h3 class="classic-title">Klasszikus geodéziai szolgáltatások</h3>
+            </div>
+            <div class="classic-grid">
+                <div class="classic-card"><div class="classic-card-num">01</div><div class="classic-card-title">Tervezési alaptérkép készítése</div></div>
+                <div class="classic-card"><div class="classic-card-num">02</div><div class="classic-card-title">Földmérési vázrajzok készítése</div></div>
+                <div class="classic-card"><div class="classic-card-num">03</div><div class="classic-card-title">Megvalósulási térképek készítése</div></div>
+                <div class="classic-card"><div class="classic-card-num">04</div><div class="classic-card-title">Mérnökgeodézia</div></div>
+                <div class="classic-card"><div class="classic-card-num">05</div><div class="classic-card-title">Közművek kitűzése, felmérése</div></div>
+                <div class="classic-card"><div class="classic-card-num">06</div><div class="classic-card-title">Utak kitűzése</div></div>
+                <div class="classic-card"><div class="classic-card-num">07</div><div class="classic-card-title">Geodéziai alappontok, határjelek pótlása</div></div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Kapcsolat szekció -->
+<section id="contact">
+
+    <div class="contact-top">
+        <div class="contact-inner">
+
+            <!-- Bal: szöveges rész -->
+            <div class="contact-text">
+                <span class="contact-label">Kapcsolat</span>
+                <h2 class="contact-title">Keressen minket<br>bizalommal!</h2>
+                <p class="contact-lead">Legyen szó egyszerű kérdésről vagy összetett geodéziai feladatról — szakembereink készséggel állnak rendelkezésére. Minden megkeresésre személyesen válaszolunk.</p>
+                <div class="contact-details">
+                    <div class="contact-detail-item">
+                        <span class="contact-detail-icon">
+                            <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10 2C7.2 2 5 4.2 5 7c0 4.5 5 11 5 11s5-6.5 5-11c0-2.8-2.2-5-5-5z"/>
+                                <circle cx="10" cy="7" r="1.8"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <div class="contact-detail-label">Cím</div>
+                            <div class="contact-detail-value">4400 Nyíregyháza,<br>Budai Nagy Antal utca 19.</div>
+                        </div>
+                    </div>
+                    <div class="contact-detail-item">
+                        <span class="contact-detail-icon">
+                            <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="16" height="13" rx="2"/>
+                                <polyline points="2,4 10,12 18,4"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <div class="contact-detail-label">E-mail</div>
+                            <div class="contact-detail-value">info@karsaigeodezia.hu</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobb: form -->
+            <div class="contact-form-wrap">
+                <form class="contact-form" id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="contactName">Neve</label>
+                        <input type="text" id="contactName" name="name" placeholder="Kovács János" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">E-mail cím</label>
+                        <input type="email" id="contactEmail" name="email" placeholder="kovacs@email.hu" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Üzenet</label>
+                        <textarea id="contactMessage" name="message" rows="5" placeholder="Írja le kérdését vagy feladatát röviden…" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">
+                        <span class="form-submit-text">Üzenet küldése</span>
+                        <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="10" x2="17" y2="10"/>
+                            <polyline points="12,5 17,10 12,15"/>
+                        </svg>
+                    </button>
+                    <div class="form-success" id="formSuccess">
+                        <svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="#1F92BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="10" cy="10" r="8"/>
+                            <polyline points="6,10 9,13 14,7"/>
+                        </svg>
+                        Köszönjük! Hamarosan felvesszük Önnel a kapcsolatot.
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Teljes szélességű térkép -->
+    <div class="contact-map">
+        <iframe
+            src="https://maps.google.com/maps?q=Budai+Nagy+Antal+utca+19,+Ny%C3%ADregyh%C3%A1za+4400&hl=hu&z=16&output=embed"
+            width="100%"
+            height="420"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Karsai Geodézia helyszín">
+        </iframe>
+    </div>
+
+</section>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+        const isOpen = menu.classList.contains('open');
+        if (isOpen) {
+            closeMenu();
+        } else {
+            menu.classList.add('open');
+            hamburger.classList.add('open');
+            hamburger.setAttribute('aria-label', 'Menü bezárása');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+
+    function closeMenu() {
+        menu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-label', 'Menü megnyitása');
+        document.body.style.overflow = '';
+    }
+
+    // Scroll-triggered animáció a welcome sávhoz
+    const welcomeSection = document.getElementById('welcome');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    observer.observe(welcomeSection);
+
+    // Services szekció observer
+    const servicesSection = document.getElementById('services');
+    const servicesObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                servicesObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
+    servicesObserver.observe(servicesSection);
+
+    // LiDAR items observer
+    const lidarItems = servicesSection.querySelector('.srv-lidar-items');
+    const lidarObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                lidarObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    lidarObserver.observe(lidarItems);
+
+    // Klasszikus szolgáltatások observer
+    const srvClassic = servicesSection.querySelector('.srv-classic');
+    const classicObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                classicObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    classicObserver.observe(srvClassic);
+
+    // Kapcsolat szekció observer
+    const contactSection = document.getElementById('contact');
+    const contactObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                contactObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    contactObserver.observe(contactSection);
+
+    // Form küldés
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('.form-submit');
+        btn.disabled = true;
+        btn.querySelector('.form-submit-text').textContent = 'Küldés…';
+        setTimeout(() => {
+            this.querySelector('#formSuccess').classList.add('show');
+            btn.style.display = 'none';
+        }, 600);
+    });
+</script>
+
+<!-- Footer -->
+<footer id="site-footer">
+    <div class="footer-main">
+        <div class="footer-inner">
+
+            <!-- Logó + tagline -->
+            <div class="footer-brand">
+                <img src="KG-logo-light.png" alt="KG Geodézia" class="footer-logo">
+                <p class="footer-tagline">Precíziós geodéziai szolgáltatások<br>megbízható szakértelemmel.</p>
+                <div class="footer-accent-line"></div>
+            </div>
+
+            <!-- Navigáció -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Oldalak</h4>
+                <ul class="footer-nav">
+                    <li><a href="#">Nyitólap</a></li>
+                    <li><a href="#services">Szolgáltatások</a></li>
+                    <li><a href="#contact">Kapcsolat</a></li>
+                </ul>
+            </div>
+
+            <!-- Kapcsolat -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Elérhetőség</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 2C6.5 2 4.5 4 4.5 6.5c0 4 4.5 9.5 4.5 9.5s4.5-5.5 4.5-9.5C13.5 4 11.5 2 9 2z"/>
+                            <circle cx="9" cy="6.5" r="1.5"/>
+                        </svg>
+                        <span>4400 Nyíregyháza,<br>Budai Nagy Antal u. 19.</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="14" height="11" rx="2"/>
+                            <polyline points="2,4 9,11 16,4"/>
+                        </svg>
+                        <span>info@karsaigeodezia.hu</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Copyright sáv -->
+    <div class="footer-bottom">
+        <div class="footer-inner">
+            <span class="footer-copy">© 2026 Karsai Geodézia Kft. Minden jog fenntartva.</span>
+            <span class="footer-copy-right">Precíziós mérés — megbízható eredmény</span>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

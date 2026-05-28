@@ -1,0 +1,1392 @@
+/* ============================================================
+   KG Geodézia — style.css
+   ID-alapú CSS scoping, expanded stílus
+   ============================================================ */
+
+
+/* ─── RESET & GLOBAL ─── */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --teal: #2496be;
+    --white: #ffffff;
+    --dark: #060d09;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    background: var(--dark);
+}
+
+
+/* ============================================================
+   #mobile-menu
+   ============================================================ */
+
+#mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: #152950;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+#mobile-menu.open {
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+#mobile-menu .mobile-links {
+    list-style: none;
+    text-align: center;
+}
+
+#mobile-menu .mobile-links li {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.45s ease,
+                transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#mobile-menu.open .mobile-links li:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.22s;
+}
+
+#mobile-menu.open .mobile-links li:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.32s;
+}
+
+#mobile-menu.open .mobile-links li:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.42s;
+}
+
+#mobile-menu .mobile-links a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 18px 0;
+    transition: color 0.2s;
+}
+
+#mobile-menu .mobile-links a:hover {
+    color: var(--teal);
+}
+
+#mobile-menu .mobile-menu-line {
+    width: 40px;
+    height: 2px;
+    background: var(--teal);
+    margin: 32px auto 0;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 0.3s,
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.52s;
+}
+
+#mobile-menu.open .mobile-menu-line {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+
+/* ============================================================
+   #site-nav
+   ============================================================ */
+
+#site-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 56px;
+}
+
+#site-nav .logo-img {
+    width: 200px;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 110;
+}
+
+#site-nav .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 44px;
+}
+
+#site-nav .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.88;
+    transition: opacity 0.25s, color 0.25s;
+    position: relative;
+}
+
+#site-nav .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 1.5px;
+    background: var(--teal);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#site-nav .nav-links a:hover {
+    opacity: 1;
+}
+
+#site-nav .nav-links a:hover::after {
+    transform: scaleX(1);
+}
+
+#hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+    position: relative;
+    z-index: 110;
+}
+
+#hamburger span {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.25s ease;
+    transform-origin: center;
+}
+
+#hamburger span:nth-child(1) {
+    margin-bottom: 7px;
+}
+
+#hamburger span:nth-child(3) {
+    margin-top: 7px;
+}
+
+#hamburger.open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+#hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.3);
+}
+
+#hamburger.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+
+/* ============================================================
+   #hero
+   ============================================================ */
+
+#hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+#hero .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+}
+
+#hero .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(6, 13, 9, 0.15) 0%,
+            rgba(6, 13, 9, 0.10) 55%,
+            rgba(6, 13, 9, 0.55) 100%
+        ),
+        linear-gradient(
+            to right,
+            rgba(6, 13, 9, 0.20) 0%,
+            rgba(6, 13, 9, 0.30) 40%,
+            rgba(6, 13, 9, 0.62) 100%
+        );
+}
+
+#hero .hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: stretch;
+}
+
+#hero .hero-left {
+    flex: 0 0 50%;
+    display: flex;
+    align-items: center;
+    padding: 80px 24px 0 56px;
+}
+
+#hero .drone-enter {
+    animation: droneSlideIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+}
+
+#hero .drone-hover {
+    animation: droneFloat 7s ease-in-out 1.9s infinite;
+}
+
+#hero .drone-img {
+    width: clamp(380px, 52vw, 720px);
+    display: block;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.65));
+}
+
+#hero .hero-right {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 56px clamp(48px, 9vh, 100px) 48px;
+}
+
+#hero .hero-title {
+    font-size: clamp(50px, 6.4vw, 92px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    animation: textFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+#hero .hero-subtitle {
+    font-size: clamp(22px, 2.6vw, 36px);
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: 0.025em;
+    margin-bottom: 16px;
+    animation: textFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.52s both;
+}
+
+#hero .hero-desc {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.78;
+    color: rgba(255, 255, 255, 0.68);
+    max-width: 520px;
+    animation: textFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.74s both;
+}
+
+
+/* ─── KEYFRAMES ─── */
+
+@keyframes droneSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-110px) translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}
+
+@keyframes droneSlideInTop {
+    from {
+        opacity: 0;
+        transform: translateY(-90px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes droneFloat {
+    0%   { transform: translateY(0px)   rotate(0deg)    scale(1.000); }
+    14%  { transform: translateY(-11px) rotate(-1.1deg) scale(1.007); }
+    32%  { transform: translateY(-19px) rotate(0.4deg)  scale(1.004); }
+    50%  { transform: translateY(-9px)  rotate(1.2deg)  scale(0.996); }
+    68%  { transform: translateY(-16px) rotate(-0.6deg) scale(1.003); }
+    85%  { transform: translateY(-6px)  rotate(0.8deg)  scale(0.998); }
+    100% { transform: translateY(0px)   rotate(0deg)    scale(1.000); }
+}
+
+@keyframes textFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes textFadeUpMobile {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ============================================================
+   #welcome
+   ============================================================ */
+
+#welcome {
+    background: #ffffff;
+    padding: 96px 56px;
+}
+
+#welcome .welcome-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+#welcome .welcome-title {
+    font-size: clamp(26px, 3.2vw, 46px);
+    font-weight: 800;
+    color: #1D3461;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+#welcome .welcome-accent {
+    height: 3px;
+    background: #1F92BB;
+    width: 0;
+    margin-bottom: 28px;
+    border-radius: 2px;
+    transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s;
+}
+
+#welcome .welcome-subtitle {
+    font-size: clamp(15px, 1.5vw, 20px);
+    font-weight: 500;
+    color: #1F92BB;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    margin-bottom: 52px;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.8s ease 0.7s,
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s;
+}
+
+#welcome .welcome-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+}
+
+#welcome .welcome-col {
+    opacity: 0;
+    transition: opacity 0.9s ease,
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#welcome .welcome-col:nth-child(1) {
+    transform: translateX(-40px);
+    transition-delay: 0.85s;
+}
+
+#welcome .welcome-col:nth-child(2) {
+    transform: translateX(40px);
+    transition-delay: 1.0s;
+}
+
+#welcome .welcome-col p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.85;
+    color: #1D3461;
+}
+
+#welcome.is-visible .welcome-title {
+    clip-path: inset(0 0% 0 0);
+}
+
+#welcome.is-visible .welcome-accent {
+    width: 72px;
+}
+
+#welcome.is-visible .welcome-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#welcome.is-visible .welcome-col {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* ============================================================
+   RESZPONZÍV
+   ============================================================ */
+
+@media (max-width: 760px) {
+
+    /* Nav */
+    #site-nav {
+        padding: 22px 24px;
+        z-index: 100;
+    }
+
+    #site-nav .logo-img {
+        width: 150px;
+    }
+
+    #site-nav .nav-links {
+        display: none;
+    }
+
+    #hamburger {
+        display: flex;
+    }
+
+    /* Hero overlay */
+    #hero .hero-overlay {
+        background:
+            linear-gradient(
+                to bottom,
+                rgba(6, 13, 9, 0.25) 0%,
+                rgba(6, 13, 9, 0.15) 40%,
+                rgba(6, 13, 9, 0.70) 100%
+            ),
+            rgba(6, 13, 9, 0.15);
+    }
+
+    /* Hero tartalom */
+    #hero .hero-content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 80px;
+        padding-bottom: 64px;
+    }
+
+    #hero .hero-left {
+        flex: 1;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    #hero .drone-enter {
+        animation-name: droneSlideInTop;
+        animation-duration: 1.2s;
+    }
+
+    #hero .drone-img {
+        width: min(92vw, 440px);
+    }
+
+    #hero .hero-right {
+        flex: none;
+        width: 100%;
+        padding: 0 24px 28px;
+        justify-content: flex-end;
+    }
+
+    #hero .hero-title {
+        font-size: clamp(36px, 10vw, 56px);
+        margin-bottom: 14px;
+        animation-name: textFadeUpMobile;
+        animation-delay: 0.5s;
+    }
+
+    #hero .hero-subtitle {
+        font-size: clamp(16px, 4.5vw, 22px);
+        margin-bottom: 12px;
+        animation-name: textFadeUpMobile;
+        animation-delay: 0.68s;
+    }
+
+    #hero .hero-desc {
+        font-size: 12px;
+        max-width: 100%;
+        animation-name: textFadeUpMobile;
+        animation-delay: 0.86s;
+    }
+
+    /* Welcome */
+    #welcome {
+        padding: 64px 24px;
+    }
+
+    #welcome .welcome-cols {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    #welcome .welcome-col:nth-child(1),
+    #welcome .welcome-col:nth-child(2) {
+        transform: translateY(28px);
+        transition-delay: 0.85s;
+    }
+
+    #welcome .welcome-col:nth-child(2) {
+        transition-delay: 1.0s;
+    }
+
+    #welcome.is-visible .welcome-col {
+        transform: translateY(0);
+    }
+}
+
+
+/* ============================================================
+   #services
+   ============================================================ */
+
+#services {
+    background: #0f1e36;
+    width: 100%;
+}
+
+/* ─── Belső konténer ─── */
+
+#services .srv-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 56px;
+}
+
+/* ─── LiDAR parallax hero ─── */
+
+#services .srv-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #1F92BB;
+    margin-bottom: 14px;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.1s;
+}
+
+#services .srv-title {
+    font-size: clamp(28px, 3.6vw, 50px);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 96px;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+}
+
+#services .srv-lidar-hero {
+    position: relative;
+    background-image: url(szolg-bg.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center 40%;
+    padding: 110px 0;
+}
+
+#services .srv-lidar-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(9, 18, 36, 0.82);
+}
+
+#services .srv-lidar-hero .srv-inner {
+    position: relative;
+    z-index: 1;
+}
+
+#services .lidar-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(31, 146, 187, 0.2);
+    border: 1px solid rgba(31, 146, 187, 0.5);
+    color: #1F92BB;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease,
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#services .lidar-hero-title {
+    font-size: clamp(30px, 4.2vw, 62px);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    max-width: 720px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.85s ease 0.15s,
+                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+#services .lidar-accent {
+    width: 0;
+    height: 2px;
+    background: #1F92BB;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s;
+}
+
+#services .lidar-hero-desc {
+    font-size: clamp(14px, 1.3vw, 17px);
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 640px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 0.35s,
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
+}
+
+/* ─── 10 LiDAR szolgáltatás ─── */
+
+#services .srv-lidar-items {
+    padding: 80px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+#services .lidar-items-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#services .lidar-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 28px 40px 28px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    cursor: default;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease,
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.2s;
+}
+
+#services .lidar-item:nth-child(even) {
+    padding-left: 40px;
+    padding-right: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+#services .lidar-item:nth-last-child(-n+2) {
+    border-bottom: none;
+}
+
+#services .lidar-item:hover {
+    background: rgba(31, 146, 187, 0.06);
+}
+
+#services .lidar-item-icon {
+    color: #1F92BB;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+#services .lidar-item-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+#services .lidar-item-desc {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* ─── Klasszikus szolgáltatások ─── */
+
+#services .srv-classic {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 72px 0 100px;
+}
+
+#services .classic-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease 0.1s,
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+#services .classic-header::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 2px;
+    background: #1F92BB;
+    flex-shrink: 0;
+    border-radius: 2px;
+}
+
+#services .classic-title {
+    font-size: clamp(15px, 1.5vw, 20px);
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#services .classic-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+#services .classic-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 24px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease,
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s,
+                background 0.25s;
+}
+
+#services .classic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    background: #1F92BB;
+    transition: height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#services .classic-card:hover {
+    border-color: rgba(31, 146, 187, 0.35);
+    background: rgba(31, 146, 187, 0.08);
+}
+
+#services .classic-card:hover::before {
+    height: 100%;
+}
+
+#services .classic-card-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1F92BB;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+
+#services .classic-card-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.4;
+}
+
+/* ─── Visible állapotok ─── */
+
+#services.is-visible .srv-label {
+    opacity: 1;
+}
+
+#services.is-visible .srv-title {
+    clip-path: inset(0 0% 0 0);
+}
+
+#services.is-visible .lidar-badge {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+#services.is-visible .lidar-hero-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#services.is-visible .lidar-accent {
+    width: 72px;
+}
+
+#services.is-visible .lidar-hero-desc {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#services .srv-lidar-items.is-visible .lidar-item:nth-child(1)  { opacity: 1; transform: translateY(0); transition-delay: 0.05s; }
+#services .srv-lidar-items.is-visible .lidar-item:nth-child(2)  { opacity: 1; transform: translateY(0); transition-delay: 0.13s; }
+#services .srv-lidar-items.is-visible .lidar-item:nth-child(3)  { opacity: 1; transform: translateY(0); transition-delay: 0.21s; }
+#services .srv-lidar-items.is-visible .lidar-item:nth-child(4)  { opacity: 1; transform: translateY(0); transition-delay: 0.29s; }
+#services .srv-lidar-items.is-visible .lidar-item:nth-child(5)  { opacity: 1; transform: translateY(0); transition-delay: 0.37s; }
+#services .srv-lidar-items.is-visible .lidar-item:nth-child(6)  { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
+#services .srv-lidar-items.is-visible .lidar-item:nth-child(7)  { opacity: 1; transform: translateY(0); transition-delay: 0.53s; }
+#services .srv-lidar-items.is-visible .lidar-item:nth-child(8)  { opacity: 1; transform: translateY(0); transition-delay: 0.61s; }
+#services .srv-lidar-items.is-visible .lidar-item:nth-child(9)  { opacity: 1; transform: translateY(0); transition-delay: 0.69s; }
+#services .srv-lidar-items.is-visible .lidar-item:nth-child(10) { opacity: 1; transform: translateY(0); transition-delay: 0.77s; }
+
+#services .srv-classic.is-visible .classic-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#services .srv-classic.is-visible .classic-card:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.20s; }
+#services .srv-classic.is-visible .classic-card:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
+#services .srv-classic.is-visible .classic-card:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.36s; }
+#services .srv-classic.is-visible .classic-card:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.44s; }
+#services .srv-classic.is-visible .classic-card:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.52s; }
+#services .srv-classic.is-visible .classic-card:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.60s; }
+#services .srv-classic.is-visible .classic-card:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.68s; }
+
+/* ─── Services reszponzív ─── */
+
+@media (max-width: 1024px) {
+    #services .classic-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 760px) {
+    #services .srv-inner {
+        padding: 0 24px;
+    }
+
+    #services .srv-lidar-hero {
+        padding: 72px 0;
+        background-attachment: scroll;
+    }
+
+    #services .srv-lidar-items {
+        padding: 56px 0;
+    }
+
+    #services .lidar-items-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #services .lidar-item,
+    #services .lidar-item:nth-child(even) {
+        padding: 22px 0;
+        border-left: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    #services .lidar-item:last-child {
+        border-bottom: none;
+    }
+
+    #services .classic-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #services .srv-classic {
+        padding: 56px 0 72px;
+    }
+}
+
+@media (max-width: 480px) {
+    #services .classic-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ============================================================
+   #contact
+   ============================================================ */
+
+#contact {
+    background: #ffffff;
+    width: 100%;
+}
+
+#contact .contact-top {
+    padding: 96px 56px;
+    border-bottom: 1px solid rgba(29, 52, 97, 0.08);
+}
+
+#contact .contact-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+/* ─── Bal: szöveges rész ─── */
+
+#contact .contact-text {
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.9s ease 0.1s,
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+#contact .contact-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #1F92BB;
+    margin-bottom: 14px;
+}
+
+#contact .contact-title {
+    font-size: clamp(26px, 3vw, 42px);
+    font-weight: 800;
+    color: #1D3461;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+}
+
+#contact .contact-lead {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: rgba(29, 52, 97, 0.7);
+    margin-bottom: 40px;
+}
+
+#contact .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#contact .contact-detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+#contact .contact-detail-icon {
+    color: #1F92BB;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+#contact .contact-detail-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1F92BB;
+    margin-bottom: 4px;
+}
+
+#contact .contact-detail-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1D3461;
+    line-height: 1.5;
+}
+
+/* ─── Jobb: form ─── */
+
+#contact .contact-form-wrap {
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.9s ease 0.25s,
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+}
+
+#contact .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#contact .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#contact .form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1D3461;
+}
+
+#contact .form-group input,
+#contact .form-group textarea {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #1D3461;
+    background: #f4f7fb;
+    border: 1.5px solid rgba(29, 52, 97, 0.15);
+    border-radius: 8px;
+    padding: 13px 16px;
+    outline: none;
+    resize: none;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+#contact .form-group input::placeholder,
+#contact .form-group textarea::placeholder {
+    color: rgba(29, 52, 97, 0.35);
+}
+
+#contact .form-group input:focus,
+#contact .form-group textarea:focus {
+    border-color: #1F92BB;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(31, 146, 187, 0.12);
+}
+
+#contact .form-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    align-self: flex-start;
+    background: #1F92BB;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+}
+
+#contact .form-submit:hover {
+    background: #1a7fa3;
+    box-shadow: 0 6px 20px rgba(31, 146, 187, 0.3);
+    transform: translateY(-1px);
+}
+
+#contact .form-submit:active {
+    transform: translateY(0);
+}
+
+#contact .form-submit:disabled {
+    opacity: 0.7;
+    cursor: default;
+    transform: none;
+}
+
+#contact .form-success {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1D3461;
+    padding: 14px 18px;
+    background: rgba(31, 146, 187, 0.08);
+    border: 1px solid rgba(31, 146, 187, 0.25);
+    border-radius: 8px;
+}
+
+#contact .form-success.show {
+    display: flex;
+}
+
+/* ─── Térkép ─── */
+
+#contact .contact-map {
+    width: 100%;
+    line-height: 0;
+}
+
+#contact .contact-map iframe {
+    display: block;
+    width: 100%;
+    height: 420px;
+    border: 0;
+    filter: saturate(0.8);
+}
+
+/* ─── Visible állapotok ─── */
+
+#contact.is-visible .contact-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+#contact.is-visible .contact-form-wrap {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ─── Kapcsolat reszponzív ─── */
+
+@media (max-width: 760px) {
+    #contact .contact-top {
+        padding: 64px 24px;
+    }
+
+    #contact .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    #contact .contact-text {
+        transform: translateY(24px);
+    }
+
+    #contact .contact-form-wrap {
+        transform: translateY(24px);
+    }
+
+    #contact.is-visible .contact-text,
+    #contact.is-visible .contact-form-wrap {
+        transform: translateY(0);
+    }
+
+    #contact .contact-map iframe {
+        height: 300px;
+    }
+}
+
+
+/* ============================================================
+   #site-footer
+   ============================================================ */
+
+#site-footer {
+    background: #0d1e36;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#site-footer .footer-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 56px;
+}
+
+/* ─── Fő rész ─── */
+
+#site-footer .footer-main {
+    padding: 80px 0 64px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#site-footer .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+}
+
+/* ─── Brand blokk ─── */
+
+#site-footer .footer-logo {
+    width: 160px;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+#site-footer .footer-tagline {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 24px;
+}
+
+#site-footer .footer-accent-line {
+    width: 40px;
+    height: 2px;
+    background: #1F92BB;
+    border-radius: 2px;
+}
+
+/* ─── Oszlopok ─── */
+
+#site-footer .footer-col-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #1F92BB;
+    margin-bottom: 20px;
+}
+
+#site-footer .footer-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#site-footer .footer-nav a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s, padding-left 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    display: inline-block;
+}
+
+#site-footer .footer-nav a:hover {
+    color: #ffffff;
+    padding-left: 6px;
+}
+
+#site-footer .footer-contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#site-footer .footer-contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13.5px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+#site-footer .footer-contact-list svg {
+    color: #1F92BB;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* ─── Copyright sáv ─── */
+
+#site-footer .footer-bottom {
+    padding: 20px 0;
+}
+
+#site-footer .footer-bottom .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#site-footer .footer-copy {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+#site-footer .footer-copy-right {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(31, 146, 187, 0.5);
+}
+
+/* ─── Footer reszponzív ─── */
+
+@media (max-width: 760px) {
+    #site-footer .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 24px;
+    }
+
+    #site-footer .footer-main {
+        padding: 56px 0 48px;
+    }
+
+    #site-footer .footer-bottom .footer-inner {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+}
