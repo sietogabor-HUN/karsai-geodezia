@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mérnökgeodézia — KG Geodézia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #site-nav { position: fixed; background: rgba(13, 30, 54, 0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .sp-hero { position: relative; background: linear-gradient(140deg, #081422 0%, #0d1e36 55%, #0a1a2e 100%); min-height: 480px; display: flex; align-items: center; padding: 170px 56px 96px; overflow: hidden; }
+        .sp-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 70% at 85% 50%, rgba(31,146,187,0.12) 0%, transparent 65%); pointer-events: none; }
+        .sp-hero-inner { position: relative; z-index: 2; max-width: 660px; }
+        .sp-breadcrumb { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: #1F92BB; margin-bottom: 22px; opacity: 0; animation: spFadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
+        .sp-title { font-size: clamp(32px, 4.8vw, 66px); font-weight: 900; color: #ffffff; line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 30px; opacity: 0; animation: spFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
+        .sp-accent-line { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; opacity: 0; animation: spFadeUp 0.7s ease 0.45s both; }
+        .sp-accent-line::before { content: ''; display: block; width: 52px; height: 2.5px; background: #1F92BB; border-radius: 2px; flex-shrink: 0; }
+        .sp-lead { font-size: clamp(14px, 1.4vw, 17px); font-weight: 400; line-height: 1.85; color: rgba(255,255,255,0.58); max-width: 560px; opacity: 0; animation: spFadeUp 0.85s cubic-bezier(0.16,1,0.3,1) 0.55s both; }
+        .sp-hero-deco { position: absolute; right: 4%; top: 50%; transform: translateY(-50%); opacity: 0.13; pointer-events: none; z-index: 1; animation: spDecoIn 1.4s ease 0.7s both; }
+        @keyframes spDecoIn { from { opacity: 0; transform: translateY(-50%) scale(0.92); } to { opacity: 0.13; transform: translateY(-50%) scale(1); } }
+        .sp-body { background: #ffffff; padding: 96px 56px; }
+        .sp-body-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 320px; gap: 72px; align-items: start; }
+        .sp-content-label { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #1F92BB; margin-bottom: 20px; }
+        .sp-content-heading { font-size: clamp(22px, 2.6vw, 36px); font-weight: 800; color: #1D3461; line-height: 1.18; letter-spacing: -0.015em; margin-bottom: 28px; }
+        .sp-content-text { font-size: 15px; font-weight: 400; line-height: 1.92; color: rgba(29,52,97,0.65); margin-bottom: 48px; }
+        .sp-features { display: flex; flex-direction: column; gap: 18px; }
+        .sp-feature { display: flex; align-items: flex-start; gap: 18px; padding: 20px 24px; background: rgba(31,146,187,0.06); border: 1px solid rgba(31,146,187,0.18); border-radius: 10px; transition: background 0.22s, border-color 0.22s; }
+        .sp-feature:hover { background: rgba(31,146,187,0.12); border-color: rgba(31,146,187,0.35); }
+        .sp-feature-icon { color: #1F92BB; flex-shrink: 0; margin-top: 2px; }
+        .sp-feature-title { font-size: 14px; font-weight: 700; color: #1D3461; margin-bottom: 4px; line-height: 1.3; }
+        .sp-feature-desc { font-size: 13px; font-weight: 400; line-height: 1.65; color: rgba(29,52,97,0.6); }
+        .sp-sidebar { position: sticky; top: 100px; background: rgba(31,146,187,0.06); border: 1px solid rgba(31,146,187,0.18); border-radius: 12px; padding: 28px 24px; }
+        .sp-sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #1F92BB; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid rgba(31,146,187,0.18); }
+        .sp-sidebar-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+        .sp-sidebar-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; font-weight: 500; color: #1D3461; line-height: 1.45; }
+        .sp-sidebar-list li::before { content: ''; display: block; width: 5px; height: 5px; border-radius: 50%; background: #1F92BB; flex-shrink: 0; margin-top: 5px; }
+        .sp-cta { background: #0d1e36; border-top: 1px solid rgba(255,255,255,0.05); padding: 80px 56px; }
+        .sp-cta-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+        .sp-cta-label { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: #1F92BB; margin-bottom: 14px; }
+        .sp-cta-title { font-size: clamp(24px, 2.8vw, 38px); font-weight: 800; color: #ffffff; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 10px; }
+        .sp-cta-sub { font-size: 14px; font-weight: 400; line-height: 1.7; color: rgba(255,255,255,0.45); max-width: 440px; }
+        .sp-cta-btn { display: inline-flex; align-items: center; gap: 10px; background: #1F92BB; color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 16px 34px; border-radius: 8px; text-decoration: none; white-space: nowrap; transition: background 0.25s, box-shadow 0.25s, transform 0.2s; }
+        .sp-cta-btn:hover { background: #1a7fa3; box-shadow: 0 10px 28px rgba(31,146,187,0.35); transform: translateY(-2px); }
+        @keyframes spFadeUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 1000px) { .sp-body-inner { grid-template-columns: 1fr; gap: 48px; } .sp-sidebar { position: static; } .sp-hero-deco { display: none; } }
+        @media (max-width: 760px) { .sp-hero { padding: 130px 24px 72px; min-height: 380px; } .sp-body { padding: 64px 24px; } .sp-cta { padding: 56px 24px; } .sp-cta-inner { flex-direction: column; align-items: flex-start; } }
+    </style>
+</head>
+<body>
+
+<div id="mobile-menu">
+    <ul class="mobile-links">
+        <li><a href="index.html#welcome" onclick="closeMenu()">Rólunk</a></li>
+        <li><a href="index.html#services" onclick="closeMenu()">Szolgáltatások</a></li>
+        <li><a href="index.html#contact" onclick="closeMenu()">Kapcsolat</a></li>
+        <li><a href="palyazatok.html" onclick="closeMenu()">Pályázatok</a></li>
+    </ul>
+    <div class="mobile-menu-line"></div>
+</div>
+
+<nav id="site-nav">
+    <a href="index.html" style="display:block;line-height:0;position:relative;z-index:110;">
+        <img src="KG-logo-light.png" alt="KG Geodézia" class="logo-img">
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html#welcome">Rólunk</a></li>
+        <li><a href="index.html#services">Szolgáltatások</a></li>
+        <li><a href="index.html#contact">Kapcsolat</a></li>
+        <li><a href="palyazatok.html">Pályázatok</a></li>
+    </ul>
+    <button id="hamburger" aria-label="Menü megnyitása">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<main>
+    <section class="sp-hero">
+        <div class="sp-hero-inner">
+            <span class="sp-breadcrumb">Klasszikus földmérési szolgáltatások</span>
+            <h1 class="sp-title">Mérnök-<br>geodézia</h1>
+            <div class="sp-accent-line"></div>
+            <p class="sp-lead">Építmények teljes körű kivitelezés-geodéziai támogatása az alapponthálózat kiépítésétől a szerkezetkitűzésen át a kontrollgeodéziáig.</p>
+        </div>
+        <div class="sp-hero-deco">
+            <svg width="420" height="390" viewBox="0 0 420 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Construction grid -->
+                <line x1="80" y1="80" x2="340" y2="80" stroke="#1F92BB" stroke-width="1" stroke-dasharray="6 4"/>
+                <line x1="80" y1="160" x2="340" y2="160" stroke="#1F92BB" stroke-width="1" stroke-dasharray="6 4"/>
+                <line x1="80" y1="240" x2="340" y2="240" stroke="#1F92BB" stroke-width="1" stroke-dasharray="6 4"/>
+                <line x1="80" y1="320" x2="340" y2="320" stroke="#1F92BB" stroke-width="1" stroke-dasharray="6 4"/>
+                <line x1="80" y1="80" x2="80" y2="320" stroke="#1F92BB" stroke-width="1" stroke-dasharray="6 4"/>
+                <line x1="160" y1="80" x2="160" y2="320" stroke="#1F92BB" stroke-width="1" stroke-dasharray="6 4"/>
+                <line x1="240" y1="80" x2="240" y2="320" stroke="#1F92BB" stroke-width="1" stroke-dasharray="6 4"/>
+                <line x1="320" y1="80" x2="320" y2="320" stroke="#1F92BB" stroke-width="1" stroke-dasharray="6 4"/>
+                <!-- Pillar markers -->
+                <rect x="72" y="72" width="16" height="16" fill="#1F92BB" fill-opacity="0.8" rx="1"/>
+                <rect x="232" y="72" width="16" height="16" fill="#1F92BB" fill-opacity="0.8" rx="1"/>
+                <rect x="72" y="312" width="16" height="16" fill="#1F92BB" fill-opacity="0.8" rx="1"/>
+                <rect x="312" y="312" width="16" height="16" fill="#1F92BB" fill-opacity="0.8" rx="1"/>
+                <rect x="312" y="72" width="16" height="16" fill="#1F92BB" fill-opacity="0.8" rx="1"/>
+                <!-- Control points -->
+                <circle cx="160" cy="160" r="5" fill="none" stroke="#1F92BB" stroke-width="1.8"/>
+                <circle cx="240" cy="160" r="5" fill="none" stroke="#1F92BB" stroke-width="1.8"/>
+                <circle cx="160" cy="240" r="5" fill="none" stroke="#1F92BB" stroke-width="1.8"/>
+                <circle cx="240" cy="240" r="5" fill="none" stroke="#1F92BB" stroke-width="1.8"/>
+                <!-- Level indicator -->
+                <rect x="170" y="175" width="80" height="30" rx="3" stroke="#1F92BB" stroke-width="1.2" fill="none"/>
+                <circle cx="210" cy="190" r="6" stroke="#1F92BB" stroke-width="1.2" fill="none"/>
+                <line x1="170" y1="190" x2="198" y2="190" stroke="#1F92BB" stroke-width="0.8"/>
+                <line x1="222" y1="190" x2="250" y2="190" stroke="#1F92BB" stroke-width="0.8"/>
+            </svg>
+        </div>
+    </section>
+
+    <section class="sp-body">
+        <div class="sp-body-inner">
+            <div>
+                <span class="sp-content-label">Részletek</span>
+                <h2 class="sp-content-heading">Kivitelezési geodézia<br>az alapoktól a befejezésig</h2>
+                <p class="sp-content-text">Vállaljuk építmények teljes körű kivitelezés-geodéziai támogatását a lokális alapponthálózat kiépítésétől a szerkezetkitűzésig. Precízen jelöljük ki a sáv- és cölöpalapok, falak, pillérek és tőcsavarok vízszintes, illetve magassági pozícióját. A hibátlan megvalósulást folyamatos kontrollgeodéziával biztosítjuk, amely során összevetjük a tervezett és a valós állapotot, az eltérésekről pedig részletes dokumentációt készítünk.</p>
+                <div class="sp-features">
+                    <div class="sp-feature">
+                        <span class="sp-feature-icon">
+                            <svg viewBox="0 0 22 22" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="2"/>
+                                <line x1="11" y1="2" x2="11" y2="5"/>
+                                <line x1="11" y1="17" x2="11" y2="20"/>
+                                <line x1="2" y1="11" x2="5" y2="11"/>
+                                <line x1="17" y1="11" x2="20" y2="11"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <div class="sp-feature-title">Lokális alapponthálózat és szerkezetkitűzés</div>
+                            <div class="sp-feature-desc">A beruházás területére illeszkedő alapponthálózat kiépítése, majd a szerkezeti elemek precíz kitűzése a tervek alapján.</div>
+                        </div>
+                    </div>
+                    <div class="sp-feature">
+                        <span class="sp-feature-icon">
+                            <svg viewBox="0 0 22 22" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="8" y="2" width="6" height="6" rx="1"/>
+                                <line x1="11" y1="8" x2="11" y2="14"/>
+                                <line x1="5" y1="14" x2="17" y2="14"/>
+                                <rect x="2" y="14" width="5" height="6" rx="1"/>
+                                <rect x="15" y="14" width="5" height="6" rx="1"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <div class="sp-feature-title">Alapok, pillérek és tőcsavarok kijelölése</div>
+                            <div class="sp-feature-desc">Sáv- és cölöpalapok, falak, pillérek és tőcsavarok vízszintes és magassági pozíciójának milliméteres pontosságú megjelölése.</div>
+                        </div>
+                    </div>
+                    <div class="sp-feature">
+                        <span class="sp-feature-icon">
+                            <svg viewBox="0 0 22 22" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="4,14 8,10 12,13 18,6"/>
+                                <path d="M14 2H20V8"/>
+                                <line x1="4" y1="20" x2="20" y2="20"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <div class="sp-feature-title">Folyamatos kontrollgeodézia és eltérés-dokumentáció</div>
+                            <div class="sp-feature-desc">A kivitelezés során rendszeres ellenőrzéssel és terv–valós összehasonlítással garantáljuk a hibátlan megvalósulást.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="sp-sidebar">
+                <div class="sp-sidebar-label">Munkafolyamat elemei</div>
+                <ul class="sp-sidebar-list">
+                    <li>Lokális alapponthálózat kiépítése</li>
+                    <li>Szerkezetkitűzés</li>
+                    <li>Sáv- és cölöpalap-kitűzés</li>
+                    <li>Fal- és pillér-kijelölés</li>
+                    <li>Tőcsavar-pozicionálás</li>
+                    <li>Kontrollgeodéziai mérések</li>
+                    <li>Eltérési dokumentáció</li>
+                </ul>
+            </aside>
+        </div>
+    </section>
+
+    <section class="sp-cta">
+        <div class="sp-cta-inner">
+            <div>
+                <span class="sp-cta-label">Ajánlatkérés</span>
+                <h3 class="sp-cta-title">Kivitelezzen geodéziai<br>biztonsággal</h3>
+                <p class="sp-cta-sub">Szakembereink a projekt minden fázisában rendelkezésre állnak, az első kitűzéstől az átadásig.</p>
+            </div>
+            <a href="index.html#contact" class="sp-cta-btn">
+                Kapcsolatfelvétel
+                <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="10" x2="17" y2="10"/>
+                    <polyline points="12,5 17,10 12,15"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+</main>
+
+
+<!-- Kedvezményezetti infoblokk -->
+<div class="eu-infoblokk-sav">
+    <div class="eu-infoblokk-inner">
+        <a href="https://palyazat.gov.hu" target="_blank" rel="noopener noreferrer">
+            <img src="kedvezmenyezetti-infoblokk-keretes.jpg" alt="Széchenyi Terv Plusz – Kedvezményezetti infoblokk">
+        </a>
+        <div class="eu-infoblokk-data">
+            <div class="eu-infoblokk-row">
+                <span class="eu-infoblokk-row-label">Kedvezményezett neve</span>
+                <span class="eu-infoblokk-row-value">KARSAI GEODÉZIA Korlátolt Felelősségű Társaság</span>
+            </div>
+            <div class="eu-infoblokk-row">
+                <span class="eu-infoblokk-row-label">Projekt címe</span>
+                <span class="eu-infoblokk-row-value">„Vállalkozásfejlesztés geodézia területen"</span>
+            </div>
+            <div class="eu-infoblokk-row">
+                <span class="eu-infoblokk-row-label">Szerződött támogatás összege</span>
+                <span class="eu-infoblokk-row-value">7 220 570 Ft</span>
+            </div>
+            <div class="eu-infoblokk-row">
+                <span class="eu-infoblokk-row-label">Tervezett befejezési dátum</span>
+                <span class="eu-infoblokk-row-value">2026. december 31.</span>
+            </div>
+            <div class="eu-infoblokk-row">
+                <span class="eu-infoblokk-row-label">Projekt azonosító száma</span>
+                <span class="eu-infoblokk-row-value">GINOP_PLUSZ-1.2.4-25-2025-00905</span>
+            </div>
+        </div>
+        <a href="palyazatok.html" class="eu-infoblokk-btn">
+            További információk a projektről
+        </a>
+    </div>
+</div>
+<footer id="site-footer">
+    <div class="footer-main">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="KG-logo-light.png" alt="KG Geodézia" class="footer-logo">
+                <p class="footer-tagline">Precíziós geodéziai szolgáltatások<br>megbízható szakértelemmel.</p>
+                <div class="footer-accent-line"></div>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Oldalak</h4>
+                <ul class="footer-nav">
+                    <li><a href="index.html#welcome">Rólunk</a></li>
+                    <li><a href="index.html#services">Szolgáltatások</a></li>
+                    <li><a href="index.html#contact">Kapcsolat</a></li>
+                    <li><a href="palyazatok.html">Pályázatok</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Elérhetőség</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 2C6.5 2 4.5 4 4.5 6.5c0 4 4.5 9.5 4.5 9.5s4.5-5.5 4.5-9.5C13.5 4 11.5 2 9 2z"/>
+                            <circle cx="9" cy="6.5" r="1.5"/>
+                        </svg>
+                        <span>4400 Nyíregyháza,<br>Budai Nagy Antal u. 19.</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="14" height="11" rx="2"/>
+                            <polyline points="2,4 9,11 16,4"/>
+                        </svg>
+                        <span>karsai.geodezia@gmail.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-inner">
+            <span class="footer-copy">© 2026 Karsai Geodézia Kft. Minden jog fenntartva.</span>
+            <span class="footer-copy-right">Precíziós mérés — megbízható eredmény</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+        const isOpen = menu.classList.contains('open');
+        if (isOpen) { closeMenu(); }
+        else { menu.classList.add('open'); hamburger.classList.add('open'); hamburger.setAttribute('aria-label', 'Menü bezárása'); document.body.style.overflow = 'hidden'; }
+    });
+    function closeMenu() { menu.classList.remove('open'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-label', 'Menü megnyitása'); document.body.style.overflow = ''; }
+</script>
+</body>
+</html>

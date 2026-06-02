@@ -826,13 +826,15 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.09);
     position: relative;
     overflow: hidden;
-    cursor: default;
+    cursor: pointer;
     opacity: 0;
     transform: translateY(22px);
     transition: opacity 0.6s ease,
                 transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.25s,
                 background 0.25s;
+    text-decoration: none;
+    display: block;
 }
 
 #services .classic-card::before {
@@ -1232,6 +1234,115 @@ body {
 
     #contact .contact-map iframe {
         height: 300px;
+    }
+}
+
+
+/* ============================================================
+   .eu-infoblokk-sav
+   ============================================================ */
+
+.eu-infoblokk-sav {
+    background: #ffffff;
+    width: 100%;
+    padding: 48px 56px;
+    border-top: 1px solid rgba(29, 52, 97, 0.08);
+}
+
+.eu-infoblokk-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eu-infoblokk-inner a {
+    display: block;
+    line-height: 0;
+}
+
+.eu-infoblokk-inner img {
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.eu-infoblokk-data {
+    max-width: 700px;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(29, 52, 97, 0.12);
+}
+
+.eu-infoblokk-btn {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 13px 28px;
+    background: #1F92BB;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 7px;
+    text-align: center;
+    transition: background 0.22s, transform 0.18s, box-shadow 0.22s;
+}
+
+@media (max-width: 760px) {
+    .eu-infoblokk-btn {
+        display: block;
+        width: 100%;
+        letter-spacing: 0.04em;
+        font-size: 11px;
+        line-height: 1.5;
+        padding: 13px 16px;
+    }
+}
+
+.eu-infoblokk-btn:hover {
+    background: #1a7fa3;
+    box-shadow: 0 6px 18px rgba(31, 146, 187, 0.28);
+    transform: translateY(-1px);
+}
+
+.eu-infoblokk-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(29, 52, 97, 0.06);
+}
+
+.eu-infoblokk-row:last-child {
+    border-bottom: none;
+}
+
+.eu-infoblokk-row-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1F92BB;
+}
+
+.eu-infoblokk-row-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1D3461;
+    line-height: 1.45;
+}
+
+@media (max-width: 760px) {
+    .eu-infoblokk-sav {
+        padding: 32px 24px;
     }
 }
 

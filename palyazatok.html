@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pályázatok — KG Geodézia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #site-nav {
+            position: fixed;
+            background: rgba(13, 30, 54, 0.97);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        #site-nav .nav-links a.active {
+            color: #1F92BB;
+            opacity: 1;
+        }
+        #site-nav .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+
+        .sp-hero {
+            position: relative;
+            background: linear-gradient(140deg, #081422 0%, #0d1e36 55%, #0a1a2e 100%);
+            min-height: 360px;
+            display: flex;
+            align-items: center;
+            padding: 170px 56px 96px;
+            overflow: hidden;
+        }
+        .sp-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 55% 70% at 85% 50%, rgba(31,146,187,0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .sp-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+        }
+        .sp-breadcrumb {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #1F92BB;
+            margin-bottom: 22px;
+            opacity: 0;
+            animation: spFadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.15s both;
+        }
+        .sp-title {
+            font-size: clamp(36px, 5vw, 72px);
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.05;
+            letter-spacing: -0.025em;
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: spFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.28s both;
+        }
+        .sp-accent-line {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: spFadeUp 0.7s ease 0.45s both;
+        }
+        .sp-accent-line::before {
+            content: '';
+            display: block;
+            width: 52px;
+            height: 2.5px;
+            background: #1F92BB;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        .sp-lead {
+            font-size: clamp(14px, 1.4vw, 17px);
+            font-weight: 400;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.58);
+            max-width: 620px;
+            opacity: 0;
+            animation: spFadeUp 0.85s cubic-bezier(0.16,1,0.3,1) 0.55s both;
+        }
+
+        /* ── Body ── */
+        .sp-body {
+            background: #ffffff;
+            padding: 96px 56px;
+        }
+        .sp-body-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+        }
+
+        /* ── Intro block ── */
+        .pb-label {
+            display: block;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #1F92BB;
+            margin-bottom: 16px;
+        }
+        .pb-heading {
+            font-size: clamp(22px, 2.8vw, 38px);
+            font-weight: 800;
+            color: #1D3461;
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            margin-bottom: 28px;
+        }
+        .pb-lead {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.9;
+            color: rgba(29,52,97,0.72);
+            max-width: 820px;
+            margin-bottom: 64px;
+            padding-left: 20px;
+            border-left: 3px solid #1F92BB;
+        }
+
+        /* ── Grant data grid ── */
+        .pb-data-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: rgba(29,52,97,0.08);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 72px;
+        }
+        .pb-data-card {
+            background: #0d1e36;
+            padding: 28px 24px;
+        }
+        .pb-data-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #1F92BB;
+            margin-bottom: 10px;
+        }
+        .pb-data-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+        .pb-data-value small {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.45);
+            margin-top: 4px;
+        }
+
+        /* ── Text sections ── */
+        .pb-section {
+            max-width: 820px;
+            margin-bottom: 64px;
+        }
+        .pb-section-title {
+            font-size: clamp(17px, 1.8vw, 22px);
+            font-weight: 800;
+            color: #1D3461;
+            letter-spacing: -0.01em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .pb-section-title::before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 2px;
+            background: #1F92BB;
+            flex-shrink: 0;
+            border-radius: 2px;
+        }
+        .pb-text {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.92;
+            color: rgba(29,52,97,0.68);
+            margin-bottom: 20px;
+        }
+        .pb-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .pb-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14.5px;
+            font-weight: 500;
+            color: rgba(29,52,97,0.75);
+            line-height: 1.5;
+        }
+        .pb-list li::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #1F92BB;
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        /* ── Activities two-col ── */
+        .pb-activities {
+            margin-bottom: 72px;
+        }
+        .pb-activities-note {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: #1F92BB;
+            background: rgba(31,146,187,0.08);
+            border: 1px solid rgba(31,146,187,0.2);
+            border-radius: 4px;
+            padding: 5px 12px;
+            margin-bottom: 32px;
+        }
+        .pb-activities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        .pb-activity-col {
+            background: #f4f7fb;
+            border-radius: 12px;
+            padding: 32px 28px;
+            border: 1px solid rgba(29,52,97,0.08);
+        }
+        .pb-activity-col-title {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #1D3461;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #1F92BB;
+        }
+
+        /* ── Equipment cards ── */
+        .pb-equipment {
+            margin-bottom: 72px;
+        }
+        .pb-equipment-lead {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.85;
+            color: rgba(29,52,97,0.65);
+            max-width: 760px;
+            margin-bottom: 36px;
+        }
+        .pb-equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        .pb-eq-card {
+            background: #ffffff;
+            border: 1px solid rgba(29,52,97,0.1);
+            border-radius: 12px;
+            padding: 28px 24px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .pb-eq-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #1F92BB;
+        }
+        .pb-eq-card:hover {
+            border-color: rgba(31,146,187,0.35);
+            box-shadow: 0 8px 24px rgba(29,52,97,0.08);
+        }
+        .pb-eq-num {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: #1F92BB;
+            margin-bottom: 10px;
+        }
+        .pb-eq-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1D3461;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        .pb-eq-desc {
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.65;
+            color: rgba(29,52,97,0.6);
+        }
+
+        /* ── EU funding band ── */
+        .pb-eu-band {
+            background: #0d1e36;
+            border-radius: 14px;
+            padding: 48px 56px;
+            margin-bottom: 0;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 48px;
+            align-items: center;
+        }
+        .pb-eu-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(31,146,187,0.15);
+            border: 1px solid rgba(31,146,187,0.35);
+            border-radius: 6px;
+            padding: 8px 16px;
+            margin-bottom: 20px;
+        }
+        .pb-eu-badge-stars {
+            display: flex;
+            gap: 3px;
+        }
+        .pb-eu-badge-stars span {
+            width: 6px;
+            height: 6px;
+            background: #f0c040;
+            border-radius: 50%;
+            display: block;
+        }
+        .pb-eu-badge-text {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #1F92BB;
+        }
+        .pb-eu-statement {
+            font-size: clamp(15px, 1.6vw, 18px);
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.55;
+            margin-bottom: 0;
+        }
+        .pb-contact-block {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .pb-contact-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #1F92BB;
+            margin-bottom: 8px;
+        }
+        .pb-contact-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .pb-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-end;
+        }
+        .pb-contact-info a {
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.55);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .pb-contact-info a:hover {
+            color: #1F92BB;
+        }
+
+        @keyframes spFadeUp {
+            from { opacity: 0; transform: translateY(26px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 1000px) {
+            .pb-data-grid { grid-template-columns: repeat(2, 1fr); }
+            .pb-equipment-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 760px) {
+            .sp-hero { padding: 130px 24px 72px; min-height: 300px; }
+            .sp-body { padding: 64px 24px; }
+            .pb-data-grid { grid-template-columns: 1fr; }
+            .pb-activities-grid { grid-template-columns: 1fr; }
+            .pb-equipment-grid { grid-template-columns: 1fr; }
+            .pb-eu-band { grid-template-columns: 1fr; gap: 32px; padding: 36px 24px; }
+            .pb-contact-block { text-align: left; }
+            .pb-contact-info { align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="mobile-menu">
+    <ul class="mobile-links">
+        <li><a href="index.html#welcome" onclick="closeMenu()">Rólunk</a></li>
+        <li><a href="index.html#services" onclick="closeMenu()">Szolgáltatások</a></li>
+        <li><a href="index.html#contact" onclick="closeMenu()">Kapcsolat</a></li>
+        <li><a href="palyazatok.html" onclick="closeMenu()">Pályázatok</a></li>
+    </ul>
+    <div class="mobile-menu-line"></div>
+</div>
+
+<nav id="site-nav">
+    <a href="index.html" style="display:block;line-height:0;position:relative;z-index:110;">
+        <img src="KG-logo-light.png" alt="KG Geodézia" class="logo-img">
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html#welcome">Rólunk</a></li>
+        <li><a href="index.html#services">Szolgáltatások</a></li>
+        <li><a href="index.html#contact">Kapcsolat</a></li>
+        <li><a href="palyazatok.html" class="active">Pályázatok</a></li>
+    </ul>
+    <button id="hamburger" aria-label="Menü megnyitása">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<main>
+    <section class="sp-hero">
+        <div class="sp-hero-inner">
+            <span class="sp-breadcrumb">Széchenyi Terv Plusz · GINOP PLUSZ program</span>
+            <h1 class="sp-title">Pályázatok</h1>
+            <div class="sp-accent-line"></div>
+            <p class="sp-lead">Európai uniós támogatással megvalósuló fejlesztések — GINOP_PLUSZ-1.2.4-25-2025-00905</p>
+        </div>
+    </section>
+
+    <section class="sp-body">
+        <div class="sp-body-inner">
+
+            <!-- Intro -->
+            <span class="pb-label">GINOP PLUSZ program</span>
+            <h2 class="pb-heading">Vállalkozásfejlesztés geodézia területen</h2>
+            <p class="pb-lead">A KARSAI GEODÉZIA Korlátolt Felelősségű Társaság a Gazdaságfejlesztési és Innovációs Operatív Program Plusz támogatási rendszeréhez benyújtott „Vállalkozásfejlesztés geodézia területen" című GINOP_PLUSZ-1.2.4-25-2025-00905 azonosító pályázatát a Nemzeti Fejlesztési Központ Irányító Hatósága 7,22 millió forint vissza nem térítendő európai uniós támogatásra érdemesnek ítélte.</p>
+
+            <!-- Grant data cards -->
+            <div class="pb-data-grid">
+                <div class="pb-data-card">
+                    <div class="pb-data-label">Projektazonosító</div>
+                    <div class="pb-data-value">GINOP_PLUSZ-1.2.4-25-2025-00905</div>
+                </div>
+                <div class="pb-data-card">
+                    <div class="pb-data-label">Kedvezményezett</div>
+                    <div class="pb-data-value">KARSAI GEODÉZIA Korlátolt Felelősségű Társaság</div>
+                </div>
+                <div class="pb-data-card">
+                    <div class="pb-data-label">Fejlesztés tárgya</div>
+                    <div class="pb-data-value">„Vállalkozásfejlesztés geodézia területen"</div>
+                </div>
+                <div class="pb-data-card">
+                    <div class="pb-data-label">Szerződött támogatás</div>
+                    <div class="pb-data-value">7 220 570 Ft
+                        <small>hétmillió-kétszázhúszezer-ötszázhetven forint</small>
+                    </div>
+                </div>
+                <div class="pb-data-card">
+                    <div class="pb-data-label">Várható befejezés</div>
+                    <div class="pb-data-value">2026. december 31.</div>
+                </div>
+                <div class="pb-data-card">
+                    <div class="pb-data-label">Helyszín</div>
+                    <div class="pb-data-value">4400 Nyíregyháza<small>Budai Nagy Antal utca 19.</small></div>
+                </div>
+            </div>
+
+            <!-- Program description -->
+            <div class="pb-section">
+                <h3 class="pb-section-title">A pályázatról</h3>
+                <p class="pb-text">Sikeresen pályázott a Karsai Geodézia Kft. a Széchenyi Terv Plusz, Gazdaságfejlesztési és Innovációs Operatív Program Plusz program keretében meghirdetett GINOP_Plusz-1.2.4-25 kódszámú „Mikro- és kisvállalkozások támogatása a leghátrányosabb helyzetű régiókban, illetve a Szabad Vállalkozási Zónákban" című pályázati felhívásra, amelynek célja növelni a vidéki térségek gazdasági fejlődését, népességmegtartó erejét az ott működő vállalkozások üzleti és működési feltételeinek javításán keresztül, ezzel hozzájárulva a területi hátrányok csökkentéséhez.</p>
+                <p class="pb-text">A fejlesztés közvetett célja, hogy a vállalkozás tovább erősítse a piaci pozícióját és a versenyképességét, növelje gazdálkodásának eredményességét.</p>
+            </div>
+
+            <!-- Project goals -->
+            <div class="pb-section">
+                <h3 class="pb-section-title">A projekt közvetlen céljai</h3>
+                <p class="pb-text">A projekt közvetlen célja a geodéziai vállalkozás átgondolt, előremutató tovább fejlesztése, amelynek része:</p>
+                <ul class="pb-list">
+                    <li>technológiai fejlesztést eredményező új geodéziai eszközök beszerzése</li>
+                    <li>információs technológia-fejlesztése</li>
+                    <li>üzleti felhő alapú szolgáltatások fejlesztése</li>
+                </ul>
+            </div>
+
+            <!-- Activities -->
+            <div class="pb-activities">
+                <h3 class="pb-section-title">Elvégzett tevékenységek</h3>
+                <span class="pb-activities-note">71.12 — Mérnöki tevékenység, műszaki tanácsadás</span>
+                <div class="pb-activities-grid">
+                    <div class="pb-activity-col">
+                        <div class="pb-activity-col-title">Kataszteri munkák</div>
+                        <ul class="pb-list">
+                            <li>Telekmegosztás</li>
+                            <li>Kitűzés</li>
+                            <li>Épületfeltüntetés</li>
+                            <li>Egyéb önálló épület feltüntetése</li>
+                            <li>Erdőtelepítések felmérése</li>
+                            <li>Szolgalmi jog bejegyzés (ideértve a vezetékjogot)</li>
+                        </ul>
+                    </div>
+                    <div class="pb-activity-col">
+                        <div class="pb-activity-col-title">Mérnökgeodéziai munkák</div>
+                        <ul class="pb-list">
+                            <li>Vasszerkezetek bemérése / kitűzése</li>
+                            <li>Talplemezek beállítása</li>
+                            <li>Alapozás kitűzése</li>
+                            <li>Alapponthálózat létesítése (magassági és vízszintes)</li>
+                            <li>Tervezési alaptérkép készítése</li>
+                            <li>Napelemparkok megvalósulásának teljeskörű geodéziai munkarészei</li>
+                            <li>Ortofotó készítés</li>
+                            <li>Földtömegszámítás</li>
+                            <li>Digitális domborzatmodell készítése</li>
+                            <li>3 dimenziós pontfelhők készítése (UAV vagy LiDAR technológiával)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment & development -->
+            <div class="pb-equipment">
+                <h3 class="pb-section-title">Fejlesztési elemek</h3>
+                <p class="pb-equipment-lead">A növekvő piaci igények és a megrendelők felgyorsult munkafolyamatai, gyors eredmény igények szükségessé teszik, hogy a vállalkozás fejlesztéssel reagáljon és piaci helyzetét biztosítva és tovább erősítve, így kiemelkedően modern és előremutató fejlesztést hajtson végre:</p>
+                <div class="pb-equipment-grid">
+                    <div class="pb-eq-card">
+                        <div class="pb-eq-num">01</div>
+                        <div class="pb-eq-title">RTK Drón beszerzése Lidar modullal</div>
+                        <div class="pb-eq-desc">A drón FPV kamerával van felszerelve éjszakai látással, megszakítás és probléma nélkül képes éjszaka repülni. A Zenmuse L2 egy LiDAR modult, egy nagy pontosságú IMU rendszert és egy 4/3 RGB CMOS kamerát integrál, így pontosabb, hatékonyabb és megbízhatóbb térinformatikai adatgyűjtést biztosít a DJI repülési platformoknak. A DJI Terrával együtt használva kulcsrakész megoldást nyújt a nagy pontosságú 3D adatgyűjtéshez és utófeldolgozáshoz.</div>
+                    </div>
+                    <div class="pb-eq-card">
+                        <div class="pb-eq-num">02</div>
+                        <div class="pb-eq-title">GPS mérő eszköz beszerzése</div>
+                        <div class="pb-eq-desc">Legkorszerűbb és leghatékonyabb IMU megoldás. Gyors munkavégzés - 5-10 másodpercen belül 1-3 cm pontosságú pozíció meghatározása. Az összes létező (GPS GLONASS BEIDOU) valamint kiépítés alatt álló jövőbeli GALILEO műholdak jeleinek vételére alkalmas már most.</div>
+                    </div>
+                    <div class="pb-eq-card">
+                        <div class="pb-eq-num">03</div>
+                        <div class="pb-eq-title">Erős Pc konfigurációk</div>
+                        <div class="pb-eq-desc">A mérő eszközök által felmért adatok gépi, felhasználó barát, tovább tervezhető formátummá alakításához erős asztali munkaállomások vásárlása, hogy a nagy mennyiségű és rendkívül nagy méretű adatok feldolgozása gyors és hatékony legyen. Stabilan képesek legyenek kiszolgálni olyan mérnöki alkalmazásokat, mint például az AutoCAD, ArchiCAD.</div>
+                    </div>
+                    <div class="pb-eq-card">
+                        <div class="pb-eq-num">04</div>
+                        <div class="pb-eq-title">4K Projektor</div>
+                        <div class="pb-eq-desc">A megrendelői oldalon állandó igényként jelentkezik a 2d/3d modellek publikus, jól látható és hallható ismertetése a megrendelők székhelyén, telephelyén. Erre alkalmas a beszerzendő lézeres mobil projektor integrált bluetooth hangszóróval.</div>
+                    </div>
+                    <div class="pb-eq-card">
+                        <div class="pb-eq-num">05</div>
+                        <div class="pb-eq-title">Felhő alapú fejlesztések</div>
+                        <div class="pb-eq-desc">
+                            <ul class="pb-list" style="margin-top:0;">
+                                <li>Beszerzés és készletgazdálkodás a meglévő és beszerzendő eszközök, kiegészítők nyilvántartására, fogyó eszközök gazdálkodásához is.</li>
+                                <li>Ügyfélkapcsolat-kezelés szoftverek: több mint ezer megrendelő állomány esetén. Célja a működési hatékonyság növelése, egységes törzsadat állomány kialakításának támogatása. A rendszer egyaránt alkalmas az ügyfél törzsadatok közvetlen rögzítését és automatikus betöltés.</li>
+                                <li>Táv és csoport munka: jogtiszta szoftver biztosítása a működéshez.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EU funding band -->
+            <div class="pb-eu-band">
+                <div>
+                    <div class="pb-eu-badge">
+                        <div class="pb-eu-badge-stars">
+                            <span></span><span></span><span></span><span></span><span></span>
+                            <span></span><span></span><span></span><span></span><span></span>
+                            <span></span><span></span>
+                        </div>
+                        <span class="pb-eu-badge-text">Európai Unió · Széchenyi Terv Plusz</span>
+                    </div>
+                    <p class="pb-eu-statement">A projekt a Széchenyi Terv Plusz program keretében<br>az Európai Unió finanszírozásával valósul meg.</p>
+                </div>
+                <div class="pb-contact-block">
+                    <div class="pb-contact-label">További információ kérhető:</div>
+                    <div class="pb-contact-name">Karsai István, ügyvezető</div>
+                    <div class="pb-contact-info">
+                        <a href="mailto:karsai.geodezia@gmail.com">karsai.geodezia@gmail.com</a>
+                        <a href="tel:+36303032909">+36 30 303 2909</a>
+                        <a href="http://www.karsaigeodezia.hu" target="_blank" rel="noopener">www.karsaigeodezia.hu</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+
+<!-- Kedvezményezetti infoblokk -->
+<div class="eu-infoblokk-sav">
+    <div class="eu-infoblokk-inner">
+        <a href="https://palyazat.gov.hu" target="_blank" rel="noopener noreferrer">
+            <img src="kedvezmenyezetti-infoblokk-keretes.jpg" alt="Széchenyi Terv Plusz – Kedvezményezetti infoblokk">
+        </a>
+        <div class="eu-infoblokk-data">
+            <div class="eu-infoblokk-row">
+                <span class="eu-infoblokk-row-label">Kedvezményezett neve</span>
+                <span class="eu-infoblokk-row-value">KARSAI GEODÉZIA Korlátolt Felelősségű Társaság</span>
+            </div>
+            <div class="eu-infoblokk-row">
+                <span class="eu-infoblokk-row-label">Projekt címe</span>
+                <span class="eu-infoblokk-row-value">„Vállalkozásfejlesztés geodézia területen"</span>
+            </div>
+            <div class="eu-infoblokk-row">
+                <span class="eu-infoblokk-row-label">Szerződött támogatás összege</span>
+                <span class="eu-infoblokk-row-value">7 220 570 Ft</span>
+            </div>
+            <div class="eu-infoblokk-row">
+                <span class="eu-infoblokk-row-label">Tervezett befejezési dátum</span>
+                <span class="eu-infoblokk-row-value">2026. december 31.</span>
+            </div>
+            <div class="eu-infoblokk-row">
+                <span class="eu-infoblokk-row-label">Projekt azonosító száma</span>
+                <span class="eu-infoblokk-row-value">GINOP_PLUSZ-1.2.4-25-2025-00905</span>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="site-footer">
+    <div class="footer-main">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="KG-logo-light.png" alt="KG Geodézia" class="footer-logo">
+                <p class="footer-tagline">Precíziós geodéziai szolgáltatások<br>megbízható szakértelemmel.</p>
+                <div class="footer-accent-line"></div>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Oldalak</h4>
+                <ul class="footer-nav">
+                    <li><a href="index.html#welcome">Rólunk</a></li>
+                    <li><a href="index.html#services">Szolgáltatások</a></li>
+                    <li><a href="index.html#contact">Kapcsolat</a></li>
+                    <li><a href="palyazatok.html">Pályázatok</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-col-title">Elérhetőség</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 2C6.5 2 4.5 4 4.5 6.5c0 4 4.5 9.5 4.5 9.5s4.5-5.5 4.5-9.5C13.5 4 11.5 2 9 2z"/>
+                            <circle cx="9" cy="6.5" r="1.5"/>
+                        </svg>
+                        <span>4400 Nyíregyháza,<br>Budai Nagy Antal u. 19.</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="14" height="11" rx="2"/>
+                            <polyline points="2,4 9,11 16,4"/>
+                        </svg>
+                        <span>karsai.geodezia@gmail.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-inner">
+            <span class="footer-copy">© 2026 Karsai Geodézia Kft. Minden jog fenntartva.</span>
+            <span class="footer-copy-right">Precíziós mérés — megbízható eredmény</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+        const isOpen = menu.classList.contains('open');
+        if (isOpen) { closeMenu(); }
+        else {
+            menu.classList.add('open');
+            hamburger.classList.add('open');
+            hamburger.setAttribute('aria-label', 'Menü bezárása');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+    function closeMenu() {
+        menu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-label', 'Menü megnyitása');
+        document.body.style.overflow = '';
+    }
+</script>
+</body>
+</html>
