@@ -335,6 +335,21 @@
         if (isOpen) { closeMenu(); }
         else { menu.classList.add('open'); hamburger.classList.add('open'); hamburger.setAttribute('aria-label', 'Menü bezárása'); document.body.style.overflow = 'hidden'; }
     });
+
+    // Nav pozíció igazítása a felső sáv görgetéséhez
+    (function() {
+        var nav = document.getElementById('site-nav');
+        var banner = document.querySelector('.top-banner');
+        if (!nav || !banner) return;
+        function updateNav() {
+            var bannerH = banner.offsetHeight;
+            var scrollY = window.scrollY || window.pageYOffset;
+            nav.style.top = Math.max(0, bannerH - scrollY) + 'px';
+        }
+        window.addEventListener('scroll', updateNav, { passive: true });
+        window.addEventListener('resize', updateNav, { passive: true });
+        updateNav();
+    })();
     function closeMenu() { menu.classList.remove('open'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-label', 'Menü megnyitása'); document.body.style.overflow = ''; }
 </script>
 </body>
