@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        .top-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 200; }
+        body { padding-top: 160px; }
         #site-nav {
             position: fixed;
             top: 160px;
@@ -32,7 +34,7 @@
             min-height: 360px;
             display: flex;
             align-items: center;
-            padding: 330px 56px 96px;
+            padding: 170px 56px 96px;
             overflow: hidden;
         }
         .sp-hero::after {
@@ -417,7 +419,7 @@
             .pb-equipment-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 760px) {
-            .sp-hero { padding: 290px 24px 72px; min-height: 300px; }
+            .sp-hero { padding: 130px 24px 72px; min-height: 300px; }
             .sp-body { padding: 64px 24px; }
             .pb-data-grid { grid-template-columns: 1fr; }
             .pb-activities-grid { grid-template-columns: 1fr; }
