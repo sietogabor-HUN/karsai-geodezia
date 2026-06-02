@@ -6,6 +6,81 @@
 
 /* ─── RESET & GLOBAL ─── */
 
+/* ─── TOP BANNER ─── */
+
+.top-banner {
+    background: #ffffff;
+    width: 100%;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 56px;
+    border-bottom: 1px solid rgba(29, 52, 97, 0.1);
+    box-sizing: border-box;
+    position: relative;
+    z-index: 50;
+}
+
+.top-banner a:first-child {
+    display: flex;
+    align-items: center;
+    height: 160px;
+    line-height: 0;
+}
+
+.top-banner a:first-child img {
+    max-height: 160px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.top-banner a:last-child {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 160px;
+    line-height: 0;
+}
+
+.top-banner a:last-child img {
+    height: 160px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    object-position: top right;
+}
+
+@media (max-width: 760px) {
+    .top-banner {
+        height: auto;
+        min-height: 80px;
+        padding: 12px 20px;
+        padding-right: 100px;
+    }
+
+    .top-banner a:first-child {
+        height: auto;
+    }
+
+    .top-banner a:first-child img {
+        max-height: 56px;
+        max-width: 55vw;
+    }
+
+    .top-banner a:last-child {
+        height: 100%;
+    }
+
+    .top-banner a:last-child img {
+        height: 100%;
+        max-height: 80px;
+    }
+}
+
+
+
 *,
 *::before,
 *::after {
@@ -1249,28 +1324,51 @@ body {
     border-top: 1px solid rgba(29, 52, 97, 0.08);
 }
 
-.eu-infoblokk-inner {
-    max-width: 700px;
+.eu-infoblokk-cols {
+    max-width: 1160px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+}
+
+.eu-infoblokk-col {
+    padding: 0 48px;
+}
+
+.eu-infoblokk-col:first-child {
+    padding-left: 0;
+    border-right: 1px solid rgba(29, 52, 97, 0.1);
+}
+
+.eu-infoblokk-col:last-child {
+    padding-right: 0;
+}
+
+.eu-infoblokk-col:last-child .eu-infoblokk-inner img {
+    width: auto;
+    height: 160px;
+}
+
+.eu-infoblokk-inner {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .eu-infoblokk-inner a {
     display: block;
     line-height: 0;
+    width: 100%;
 }
 
 .eu-infoblokk-inner img {
-    max-width: 700px;
     width: 100%;
     height: auto;
     display: block;
 }
 
 .eu-infoblokk-data {
-    max-width: 700px;
     width: 100%;
     margin-top: 20px;
     padding-top: 20px;
@@ -1311,6 +1409,19 @@ body {
     transform: translateY(-1px);
 }
 
+.eu-infoblokk-footer-note {
+    max-width: 1160px;
+    margin: 32px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(29, 52, 97, 0.1);
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    letter-spacing: 0.02em;
+}
+
 .eu-infoblokk-row {
     display: flex;
     flex-direction: column;
@@ -1343,6 +1454,32 @@ body {
 @media (max-width: 760px) {
     .eu-infoblokk-sav {
         padding: 32px 24px;
+    }
+
+    .eu-infoblokk-cols {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .eu-infoblokk-col {
+        padding: 0;
+    }
+
+    .eu-infoblokk-col:first-child {
+        border-right: none;
+        border-bottom: 1px solid rgba(29, 52, 97, 0.1);
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+    }
+
+    .eu-infoblokk-row {
+        flex-direction: column;
+        gap: 3px;
+        padding: 10px 0;
+    }
+
+    .eu-infoblokk-row-label {
+        width: auto;
     }
 }
 
