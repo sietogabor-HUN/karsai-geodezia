@@ -159,6 +159,12 @@ body {
     transition-delay: 0.42s;
 }
 
+#mobile-menu.open .mobile-links li:nth-child(4) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.52s;
+}
+
 #mobile-menu .mobile-links a {
     display: block;
     color: var(--white);
